@@ -14,22 +14,39 @@
 	$firstname	= null;
 	$lastname 	= null;
 
-	$codeCheckResult 	= 1;
+	$codeCheckResult 	= 0;
 	$nameCheckResult 	= 0;
-	$emailValResult 	= 1;
-	$userIsListed 		= 1;
-	$successfulReg 		= 1;
+	$emailValResult 	= 0;
+	$userIsListed 		= 0;
+	$successfulReg 		= 0;
+	$responseString		= null;
 
-	$codeCheckResult = validateSTDCode($userCode, SAVETHEDATECODE);
-	$nameCheckResult = checkName($fullname);
+	$codeCheckResult 	= validateSTDCode($userCode, SAVETHEDATECODE);
+	$fullname			= sanitizeString($fullname);
+	$nameCheckResult 	= validateName($fullname);
 
 
-	function checkName( $value ) {
-		return 0;
+	// Split into first/last names if fullname is formatted correctly
+	if ($nameCheckResult == 1) {
+		$firstname = extractFirstName($fullname);
+		$lastname = extractLastName($fullname);
 	}
-	
 
-	$rawJson = array("successfulReg" => $successfulReg, "codeCheckResult" => $codeCheckResult, "userIsListed" => $userIsListed, "firstname" => $firstname, "lastname" => $lastname);
+	// Check to see if last name is in the database
+	if ($lastname) {
+		$userIsListed = validateLastName($lastname);
+	}
+
+
+
+	$rawJson = array("successfulReg" => $successfulReg, 
+					"codeCheckResult" => $codeCheckResult, 
+					"userIsListed" => $userIsListed, 
+					"userName" => $fullname, 
+					"firstname" => $firstname, 
+					"lastname" => $lastname
+					);
+
 	$cleanJson = json_encode($rawJson);
 
 	echo $cleanJson;

@@ -105,7 +105,7 @@ function validateRadioBtns() {
 function submitBtnFeedback() {
 	// Let user know something is happening
 	var submitBtn = document.getElementById("submit");
-	submitBtn.value = "RSVPing...";
+	submitBtn.value = "<i class=\"fa fa-spinner fa-spin\"></i>" + " RSVPing...";
 	submitBtn.className += " dialBack";
 }
  
@@ -157,11 +157,12 @@ function serverCallback() {
 
 		/*
 		<div class="container small">
-						<h3>Ok! We've got you on our list! We can't wait to see you there, Bob.</h3>
-					</div>
+			<h3>Ok! We've got you on our list! We can't wait to see you there, Bob.</h3>
+		</div>
 					*/
 
-		newMessage = "";
+		newMessage = "<div class=\"container small\"><h3>Ok! We've got you on our list! We can't wait to see you there, "+
+						serverResponse.firstname+".</h3></div>";
 
 		userFormContainer.innerHTML = "";
 	} else {
