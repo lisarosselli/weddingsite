@@ -10,7 +10,9 @@
     function sanitizeString( $value ) {
         $newStr = trim($value);
         $newStr = strip_tags($newStr);
-        //$newStr = mysqli_escape_string($newStr);
+        $newStr = strtolower($newStr);
+        $newStr = htmlspecialchars($newStr);
+        $newStr = addslashes($newStr);
         return $newStr;
     }
 
@@ -23,7 +25,6 @@
 
     function extractFirstName( $value ) {
         $arr = explode(" ", $value);
-        print_r($arr);
         return $arr[0];
     }
 
@@ -51,11 +52,22 @@
     }
 
     function validateLastName( $value ) {
+        $rows = query("SELECT * FROM lastnames WHERE lastname = ?", $value);
+        if (count($rows) == 1) {
+            return 1;
+        } 
+        return 0;
+    }
 
+    function registerUser( $first, $last, $protein) {
+        //$rows = query("INSERT INTO ")
     }
 
     function createResponseString( $successFlag ) {
-
+        // 0 - db error/name error
+        // 1 - success
+        // 2 - code not valid
+        // 3 - user not listed
     }
 
     /**

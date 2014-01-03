@@ -24,6 +24,7 @@
 	$codeCheckResult 	= validateSTDCode($userCode, SAVETHEDATECODE);
 	$fullname			= sanitizeString($fullname);
 	$nameCheckResult 	= validateName($fullname);
+	$entree				= sanitizeString($entree);
 
 
 	// Split into first/last names if fullname is formatted correctly
@@ -37,7 +38,10 @@
 		$userIsListed = validateLastName($lastname);
 	}
 
-
+	// If user is in db and code is good, register them
+	if ($userIsListed && $codeCheckResult) {
+		$successfulReg = registerUser($firstname, $lastname, $entree);
+	}
 
 	$rawJson = array("successfulReg" => $successfulReg, 
 					"codeCheckResult" => $codeCheckResult, 

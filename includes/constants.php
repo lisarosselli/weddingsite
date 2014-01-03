@@ -20,4 +20,9 @@
     // Save the Date code
     define("SAVETHEDATECODE", "ballatore");
 
+    // entrees
+    define("BEEF", "beef");
+    define("FISH", "fish");
+    define("VEG", "veg");
+
 ?>
