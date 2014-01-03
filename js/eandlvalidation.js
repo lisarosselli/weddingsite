@@ -101,12 +101,18 @@ function validateRadioBtns() {
 	userEntree = $("input[name='entree']:checked").attr('id')
 	return radio_buttons.val();
 }
+
+function submitBtnFeedback() {
+	// Let user know something is happening
+	var submitBtn = document.getElementById("submit");
+	submitBtn.value = "RSVPing...";
+	submitBtn.className += " dialBack";
+}
  
 function doServerCheck() {
 	console.log("doServerCheck");
 
-	// Let user know something is happening
-	document.getElementById("submit").value = "RSVPing...";
+	submitBtnFeedback();
 
 	var xhr = new XMLHttpRequest;
 	xhr.onreadystatechange = ensureReadiness;
@@ -142,6 +148,25 @@ function doServerCheck() {
 
 function serverCallback() {
 	console.log("serverCallback");
+
+	var userFormContainer = document.getElementById("userFormContainer");
+	var newMessage = null;
+
+	if (serverResponse.successfulReg) {
+		console.log("successfulReg!");
+
+		/*
+		<div class="container small">
+						<h3>Ok! We've got you on our list! We can't wait to see you there, Bob.</h3>
+					</div>
+					*/
+
+		newMessage = "";
+
+		userFormContainer.innerHTML = "";
+	} else {
+		console.log("failure to reg");
+	}
 
 	//TODO: is this a success or failure?
 	//TODO: show the user some feedback, YAY! or contact Eileen or Lisa.

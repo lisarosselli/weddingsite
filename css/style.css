@@ -1351,3 +1351,7 @@
 .redAlertText {
 	color: red;
 }
+
+.dialBack {
+	opacity: .35;
+}

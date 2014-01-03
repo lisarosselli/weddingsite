@@ -15,6 +15,14 @@
     	return 0;
     }
 
+    function extractFirstName( $value ) {
+
+    }
+
+    function extractLastName( $value ) {
+        
+    }
+
     function validateLastName( $value ) {
 
     }

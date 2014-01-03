@@ -7,18 +7,18 @@
 
 	require("config.php");
 
-	//$saveTheDateCode = "ballatore";
-
 	$userCode 	= $_GET["userCode"];
 	$fullname 	= $_GET["userName"];
 	$email 		= $_GET["userEmail"];
 	$entree 	= $_GET["userEntree"];
+	$firstname	= null;
+	$lastname 	= null;
 
-	$codeCheckResult 	= 0;
+	$codeCheckResult 	= 1;
 	$nameCheckResult 	= 0;
-	$emailValResult 	= 0;
-	$userIsListed 		= 0;
-	$successfulReg 		= 0;
+	$emailValResult 	= 1;
+	$userIsListed 		= 1;
+	$successfulReg 		= 1;
 
 	$codeCheckResult = validateSTDCode($userCode, SAVETHEDATECODE);
 	$nameCheckResult = checkName($fullname);
@@ -29,7 +29,7 @@
 	}
 	
 
-	$rawJson = array("codeCheckResult" => $codeCheckResult, "userName" => $fullname);
+	$rawJson = array("successfulReg" => $successfulReg, "codeCheckResult" => $codeCheckResult, "userIsListed" => $userIsListed, "firstname" => $firstname, "lastname" => $lastname);
 	$cleanJson = json_encode($rawJson);
 
 	echo $cleanJson;
