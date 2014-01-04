@@ -11,6 +11,7 @@
 	body,input,textarea,select
 	{
 		font-size: 11pt;
+		margin-bottom: -5px !important;
 	}
 
 	/* Sections/Articles */
@@ -95,7 +96,7 @@
 
 			.main > header h2
 			{
-				font-size: 1.5em;
+				font-size: 3em;
 			}
 
 		.main > .content
@@ -107,3 +108,8 @@
 			{
 				font-size: 1.25em;
 			}
+
+#beef, #fish, #veg {
+	width: 15px !important;
+	margin-left: 20px !important;
+}

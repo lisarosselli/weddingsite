@@ -98,14 +98,14 @@ function validateRadioBtns() {
 		return 0;
 	} 
 	
-	userEntree = $("input[name='entree']:checked").attr('id')
+	userEntree = $("input[name='entree']:checked").attr('value')
 	return radio_buttons.val();
 }
 
 function submitBtnFeedback() {
 	// Let user know something is happening
 	var submitBtn = document.getElementById("submit");
-	submitBtn.value = "<i class=\"fa fa-spinner fa-spin\"></i>" + " RSVPing...";
+	submitBtn.value = "RSVPing...";
 	submitBtn.className += " dialBack";
 }
  

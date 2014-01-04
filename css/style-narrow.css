@@ -85,7 +85,7 @@
 
 			.main > header h2
 			{
-				font-size: 1.85em;
+				font-size: 3em;
 			}
 
 			.main > header br
@@ -122,3 +122,8 @@
 		{
 			margin-top: 2em;
 		}
+
+#beef, #fish, #veg {
+	width: 15px !important;
+	margin-left: 20px !important;
+}
