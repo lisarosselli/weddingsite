@@ -59,15 +59,22 @@
         return 0;
     }
 
-    function registerUser( $first, $last, $protein) {
-        //$rows = query("INSERT INTO ")
+    function registerUser( $first, $last, $email, $protein) {
+        $name = ucfirst($first)." ".ucfirst($last);
+        $result = query("INSERT INTO rsvp (name, email, protein) values (?, ?, ?);", $name, $email, $protein);
+        if ($result !== false) {
+            return 1;
+        }
+        return 0;
     }
 
-    function createResponseString( $successFlag ) {
-        // 0 - db error/name error
-        // 1 - success
-        // 2 - code not valid
-        // 3 - user not listed
+    function checkPrevReg( $first, $last, $email ) {
+        $name = ucfirst($first)." ".ucfirst($last);
+        $rows = query("SELECT * FROM rsvp WHERE name=? AND email=?;", $name, $email);
+        if (count($rows) == 1) {
+            return 1;
+        }
+        return 0;
     }
 
     /**

@@ -148,29 +148,9 @@ function doServerCheck() {
 
 function serverCallback() {
 	console.log("serverCallback");
-
 	var userFormContainer = document.getElementById("userFormContainer");
-	var newMessage = null;
-
-	if (serverResponse.successfulReg) {
-		console.log("successfulReg!");
-
-		/*
-		<div class="container small">
-			<h3>Ok! We've got you on our list! We can't wait to see you there, Bob.</h3>
-		</div>
-					*/
-
-		newMessage = "<div class=\"container small\"><h3>Ok! We've got you on our list! We can't wait to see you there, "+
-						serverResponse.firstname+".</h3></div>";
-
-		userFormContainer.innerHTML = "";
-	} else {
-		console.log("failure to reg");
-	}
-
-	//TODO: is this a success or failure?
-	//TODO: show the user some feedback, YAY! or contact Eileen or Lisa.
+	var newMessage = serverResponse.responseString;
+	userFormContainer.innerHTML = newMessage;
 }
 
 
