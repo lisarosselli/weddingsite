@@ -1363,3 +1363,16 @@
 .footerCentered {
 	text-align: center;
 }
+
+#submit :hover {
+	background: #00FF00;
+}
+
+.button:hover #submit {
+	background: #FF0000;
+}
+
+.aside {
+	font-size: 0.8em;
+	opacity: 0.8;
+}

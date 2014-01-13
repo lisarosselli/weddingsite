@@ -12,6 +12,7 @@ var serverResponse = null;
 
 window.onload = function() {
 	document.getElementById("submit").onclick = validateForm;
+	document.getElementById("regret").onclick = enterRegret;
 }
 
 function validateForm() {
@@ -151,6 +152,47 @@ function serverCallback() {
 	var userFormContainer = document.getElementById("userFormContainer");
 	var newMessage = serverResponse.responseString;
 	userFormContainer.innerHTML = newMessage;
+}
+
+function enterRegret() {
+	console.log("enterRegret");
+
+	userName = document.getElementById("username");
+	userEmail = document.getElementById("email");
+	userCode = document.getElementById("code");
+	//entreeBlurb = document.getElementById("entreeBlurb");
+
+	var isNameValid = validateName(userName.value);
+	var isEmailValid = validateEmail(userEmail.value);
+	var isCodeValid = validateCode(userCode.value);
+	//var entreeValid = validateRadioBtns();
+
+	if (!isNameValid) {
+		userName.className += " redAlert";
+	} else {
+		userName.className = "text";
+	}
+
+	if (!isEmailValid) {
+		userEmail.className += " redAlert";
+	} else {
+		userEmail.className = "text";
+	}
+
+	if (!isCodeValid) {
+		userCode.className += " redAlert";
+	} else {
+		userCode.className = "text";
+	}
+
+	/*
+	if (!entreeValid) {
+		entreeBlurb.className += " redAlertText";
+	} else {
+		entreeBlurb.className = "12u";
+	}
+	*/
+
 }
 
 
