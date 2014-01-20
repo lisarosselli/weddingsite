@@ -144,8 +144,8 @@ function doServerCheck() {
 		if (xhr.readyState === 4)
 		{
 			console.log("success");
-			var parsedObject = JSON.parse(xhr.response);
 			console.log(xhr);
+			var parsedObject = JSON.parse(xhr.response);
 			console.log(parsedObject);
 			t.serverResponse = parsedObject;
 			serverCallback();

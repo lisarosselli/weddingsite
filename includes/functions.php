@@ -95,6 +95,43 @@
         return 0;
     }
 
+    function sendEmailConfirmation( $firstname, $email ) {
+        $to = $email;
+        $subject = "RSVP Confirmation: Eileen + Lisa's Wedding";
+        
+        $body = "<table width='600px' style='cell-padding:20px;'>
+                <tr>
+                    <td style='background-color:#F2ECEB; height:150px'>
+                        <h1 style='font-family:Helvetica,Helvetica Neue,sans-serif; color:#FCF6F5; font-size:5em; font-weight:100;'>RSVP</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td style='padding:25px; font-family:Georgia,New York,serif;'>
+                        <p>Hello ".$firstname.",</p>
+                        <p >We can't wait to see you on our wedding day! Sunday, August 3rd, 2014 will prove to be a big day for us all. Ceremony and reception will take place upstairs in the Brewer's Lounge at Revolution Brewing.</p>
+                        <p>
+                        Revolution Brewing is located at 2323 N. Milwaukee Ave, Chicago, Illinois. It's right off the California Blue Line stop or can be accessed off the I-90/94 Fullerton exit. Happily, street parking is not metered on Sundays in the area.
+                        </p>
+
+                        <p>Feel free to check back at <a href='http://eandlwedding.lisarosselli.com/' target='_blank'>the website</a> for updates.
+
+                        <p>Thank you for your response. We can't wait to take this huge step in our lives and for you to be a part of it!</p>
+                        <p>Cheers!</p>
+                        <p>&nbsp;&nbsp;&nbsp;-- Eileen &amp; Lisa</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style='background-color:#F2ECEB; height:30px'></td>
+                </tr>
+            </table>";
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+        $headers .= "From: <studio1809@gmail.com>" . "\r\n";
+
+        mail($to, $subject, $body, $headers);
+    }
+
     /**
      * Executes SQL statement, possibly with parameters, returning
      * an array of all rows in result set or false on (non-fatal) error.
