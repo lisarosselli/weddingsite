@@ -23,6 +23,18 @@
 	</head>
 	<body>
 
+		<!-- lean modal -->
+		<div id="lean_overlay" class="hide">
+			<div id="lean_overlay_inner">
+				<h1 class="overlay">Are you sure? Because we're set to have a great time without you.</h1>
+				<ul class="actions overlay">
+					<li><input id="whoops" class="button" value="Oops! Go back!" readonly /></li>
+					<li><input id="yeahisuck" class="button" value="I cannot attend." readonly /></li>
+				</ul>
+			</div>
+		</div>	
+
+
 		<!-- Header -->
 			<section id="header" class="dark">
 				<header>
@@ -39,7 +51,7 @@
 				<header>
 					<div class="container">
 						<h2>8.3.14</h2>
-						<p>We are celebrating this event in our lives with something intrisically Chicago, inherently 'us' and quintessentially urban. Please join us on <a id"gcal" href="http://www.google.com/calendar/event?action=TEMPLATE&text=Eileen%20%26%20Lisa's%20Wedding&dates=20140803T190000Z/20140804T010000Z&details=&location=Revolution%20Brewery%20(2323%20N.%20Milwaukee%20Ave.%3B%20Chicago%2C%20IL)&trp=true&sprop=&sprop=name:" target="_blank" alt="Add To Google Cal">Sunday, August 3rd, 2014, 2pm CST</a> in the Brewer's Lounge at Revolution Brewery for vows, rings, happy tears, smiles, photos, good times, great beer, awesome food, and a lot&nbsp;of&nbsp;fun!</p>
+						<p>We are celebrating this event in our lives with something intrisically Chicago, inherently 'us' and quintessentially urban. Please join us on <a id"gcal" href="http://www.google.com/calendar/event?action=TEMPLATE&text=Eileen%20%26%20Lisa's%20Wedding&dates=20140803T190000Z/20140804T010000Z&details=&location=Revolution%20Brewery%20(2323%20N.%20Milwaukee%20Ave.%3B%20Chicago%2C%20IL)&trp=true&sprop=&sprop=name:" target="_blank" alt="Add To Google Cal">Sunday, August 3rd, 2014, 2pm CST</a> in the Brewer's Lounge at <a href="http://goo.gl/maps/aXfBl" target="_blank">Revolution Brewery</a> for vows, rings, happy tears, smiles, photos, good times, great beer, awesome food, and a lot&nbsp;of&nbsp;fun!</p>
 					</div>
 					<footer>
 						<a href="#fourth" class="button scrolly">I want to RSVP</a>
@@ -62,7 +74,6 @@
 							</div>
 							<div class="6u">
 								<section>
-									<h3>&nbsp;</h3>
 									<p>She bent over, clenched her fists and yelled "F@#K!!!"" at the top of her lungs. She looked like popeye after having a can of spinach. I swear, her muscles even got bigger.  after a second I took a step closer and asked her if she wanted to be comforted or left alone. Without looking at me she waved me off. For the remainder of the day I ran a bit ahead of her and when she crossed the finish line she wouldn't even look at me. I thought for sure I had lost a friend on the mountain. As it turns out, all she needed was some mediocre Italian food from a restaurant in Leadville. Phew! It was a life-altering experience on many levels. It’s incredible to discover all that you are capable of achieving, even when you can’t see the finish line.</p>
 									<p>Later that year, Lisa asked me out on a date. In that moment I remembered those white shorts and I knew. I knew we were finally where we were supposed to be. Together.<p>
 									<p>
@@ -107,8 +118,8 @@
 							<div class="row">
 								<div class="12u">
 									<ul class="actions">
-										<li><input id="submit" class="button" value="Count me in!" readonly /></li>
 										<li><input id="regret" class="button" value="Sorry, can't make it" readonly /></li>
+										<li><input id="submit" class="button" value="Count me in!" readonly /></li>
 									</ul>
 								</div>
 							</div>
@@ -116,26 +127,46 @@
 					</form>
 				</div>
 			</section>
-			
+
+			<section id="first" class="main">
+				<div class="content dark style1 featured">
+					<div class="container">
+						<div class="row">
+							<div class="12u">
+								<section>
+									<span class="feature-icon"><span class="fa fa-question-circle"></span></span>
+									<header>
+										<h3>FAQs</h3>
+									</header>
+									<p>Q: Will I get to see where they actually brew beer?<br/>
+										A: Yes! Brewery tours will be plentiful.</p>
+									<p>Q: What should I wear?<br/>
+					A: Attire should be semi-formal with respect to Sunday afternoons, in August, in a brewery. Distill that as you will. Distill... see what we did there?!</p>
+									<p>Q: Why does extremely hoppy beer make Eileen's face itch?<br/>
+					A: We are unsure but anticipate it has something to do with her intolerably cute red hair and freckles.</p>				
+									<p>Q: How many times will 'Come on Eileen' be played?<br/>
+					A: That remains to be seen.</p>
+									<p>Q: Should we let Lisa have any Jack Daniels on her wedding day?<br/>
+					A: Absolutely not.</p>
+									<p>Q: Are you crazy kids registered anywhere?<br/>
+					A: Nope. Getting married 'later in life', as Lisa would put it, we already have everything we need. That being said, should you feel so inclined, you may make a contribution to our honeymoon here.</p>
+								</section>
+							</div>
+							
+							
+						</div>
+			</section>
 		<!-- Footer -->
 			<section id="footer">
-				<!--
-				<ul class="icons">
-					<li><a href="#" class="fa fa-twitter solo"><span>Twitter</span></a></li>
-					<li><a href="#" class="fa fa-facebook solo"><span>Facebook</span></a></li>
-					<li><a href="#" class="fa fa-google-plus solo"><span>Google+</span></a></li>
-					<li><a href="#" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
-					<li><a href="#" class="fa fa-github solo"><span>GitHub</span></a></li>
-				</ul>
-			-->
-				<div class="copyright">
-					
+				<div class="copyright">			
 					<ul class="menu">
 						<li>PS. This site is not catalogued by Google, Yahoo, or otherwise.</li>
 						<li>You are here because you are in receipt of a Save The Date!</li>
 					</ul>
 				</div>
 			</section>
+
 		<script type="text/javascript" src="js/eandlvalidation.js"></script>
+		<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 	</body>
 </html>

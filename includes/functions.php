@@ -77,6 +77,24 @@
         return 0;
     }
 
+    function regretThis( $first, $last, $email ) {
+        $name = ucfirst($first)." ".ucfirst($last);
+        $result = query("INSERT INTO regrets (name, email) values(?, ?);", $name, $email);
+        if ($result !== false) {
+            return 1;
+        }
+        return 0;
+    }
+
+    function previouslyRegretted( $first, $last, $email) {
+        $name = ucfirst($first)." ".ucfirst($last);
+        $rows = query("SELECT * FROM regrets WHERE name=? AND email=?;", $name, $email);
+        if (count($rows) == 1) {
+            return 1;
+        }
+        return 0;
+    }
+
     /**
      * Executes SQL statement, possibly with parameters, returning
      * an array of all rows in result set or false on (non-fatal) error.

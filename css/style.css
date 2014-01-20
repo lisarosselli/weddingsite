@@ -664,7 +664,7 @@
 				display: inline-block;
 				width: 2em;
 				height: 2em;
-				font-size: 4.5em;
+				font-size: 2em;
 				border-radius: 100%;
 				box-shadow: inset 0 0 0 1px #666;
 				color: #666;
@@ -1375,4 +1375,48 @@
 .aside {
 	font-size: 0.8em;
 	opacity: 0.8;
+}
+
+#lean_overlay {
+	position: fixed;
+    z-index:100;
+    top: 0;
+    left: 0;
+    height:100%;
+    width:100%;
+    background: #554444;
+    /*display: none;*/
+    opacity: 1;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+.show {
+	visibility: visible;
+}
+
+#lean_overlay_inner {
+	position: fixed;
+	z-index: 101;
+	width: 60%;
+	height: 75%;
+	top: 12%;
+	left: 20%;
+}
+
+.overlay {
+	color: #fff;
+	font-weight: 300;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+#whoops {
+	background: #00cc00;
+}
+
+#yeahisuck {
+	background: #FF0000;
 }

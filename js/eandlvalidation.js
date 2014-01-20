@@ -12,7 +12,9 @@ var serverResponse = null;
 
 window.onload = function() {
 	document.getElementById("submit").onclick = validateForm;
-	document.getElementById("regret").onclick = enterRegret;
+	document.getElementById("regret").onclick = validateRegret;
+	document.getElementById("whoops").onclick = hideConfirm;
+	document.getElementById("yeahisuck").onclick = submitRegretsTable;
 }
 
 function validateForm() {
@@ -109,6 +111,13 @@ function submitBtnFeedback() {
 	submitBtn.value = "RSVPing...";
 	submitBtn.className += " dialBack";
 }
+
+function regretsBtnFeedback() {
+	// Let user know something is happening
+	var submitBtn = document.getElementById("yeahisuck");
+	submitBtn.value = "Saving...";
+	submitBtn.className += " dialBack";
+}
  
 function doServerCheck() {
 	console.log("doServerCheck");
@@ -118,6 +127,7 @@ function doServerCheck() {
 	var xhr = new XMLHttpRequest;
 	xhr.onreadystatechange = ensureReadiness;
 	var t = this;
+	console.log("t="+t);
 
 	function ensureReadiness()
 	{
@@ -154,18 +164,29 @@ function serverCallback() {
 	userFormContainer.innerHTML = newMessage;
 }
 
-function enterRegret() {
-	console.log("enterRegret");
+function hideConfirm() {
+	console.log("hideConfirm");
+	confirm = document.getElementById("lean_overlay");
+	confirm.className = "hide";
+}
+
+function showConfirm() {
+	console.log("showConfirm");
+	confirm = document.getElementById("lean_overlay");
+	confirm.className = "show";
+}
+
+function validateRegret() {
+	console.log("validateRegret");
 
 	userName = document.getElementById("username");
 	userEmail = document.getElementById("email");
 	userCode = document.getElementById("code");
-	//entreeBlurb = document.getElementById("entreeBlurb");
+	entreeBlurb = document.getElementById("entreeBlurb");
 
 	var isNameValid = validateName(userName.value);
 	var isEmailValid = validateEmail(userEmail.value);
 	var isCodeValid = validateCode(userCode.value);
-	//var entreeValid = validateRadioBtns();
 
 	if (!isNameValid) {
 		userName.className += " redAlert";
@@ -185,14 +206,59 @@ function enterRegret() {
 		userCode.className = "text";
 	}
 
-	/*
-	if (!entreeValid) {
-		entreeBlurb.className += " redAlertText";
-	} else {
-		entreeBlurb.className = "12u";
-	}
-	*/
+	entreeBlurb.className = "12u";
 
+	if (isNameValid && isEmailValid && isCodeValid) {
+		showConfirm();
+	}
+}
+
+function submitRegretsTable() {
+	console.log("submitRegretsTable");
+
+	regretsBtnFeedback();
+
+	var xhr = new XMLHttpRequest;
+	xhr.onreadystatechange = ensureReadiness;
+	var t = window;
+	console.log("t="+t);
+
+	function ensureReadiness()
+	{
+		if (xhr.readyState < 4)
+		{
+			return;
+		}
+
+		if (xhr.status != 200)
+		{
+			return;
+		}
+
+		if (xhr.readyState === 4)
+		{
+			console.log("success");
+			var parsedObject = JSON.parse(xhr.response);
+			console.log(xhr);
+			console.log(parsedObject);
+			t.serverResponse = parsedObject;
+			regretsCallback();
+		}
+	}
+
+	var data = "userCode="+userCode.value+"&userName="+userName.value+"&userEmail="+userEmail.value;
+	xhr.open('GET', "includes/saveRegret.php?"+data, true);
+	xhr.send();
+}
+
+function regretsCallback() {
+	console.log("regretsCallback");
+
+	hideConfirm();
+
+	var userFormContainer = document.getElementById("userFormContainer");
+	var newMessage = serverResponse.responseString;
+	userFormContainer.innerHTML = newMessage;
 }
 
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stripe</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<form action="" method="POST">
+		  <script
+		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		    data-key="pk_test_VZmycJbSNYKz1EviSXX2AVBF"
+		    data-amount="2500"
+		    data-name="Eileen and Lisa's Honeymoon"
+		    data-description="$25.00"
+		    data-image="/128x128.png">
+		  </script>
+		</form>
+	</body>
+</html>
+
+
+SELECT COUNT(*) FROM users WHERE team=2
+
+
+SELECT u.id, u.name, t.id, t.teamname
+FROM users AS u
+LEFT OUTER JOIN teams AS t 
+ON u.team=t.id
+
+SELECT teams.id, teams.teamname,
+COUNT(users.team) as TOTAL
+FROM teams
+LEFT OUTER JOIN users
+ON teams.id=users.team
+GROUP by users.team
+ORDER BY teams.teamname
+
+SELECT teams.id, teams.teamname,
