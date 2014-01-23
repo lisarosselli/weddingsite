@@ -2,8 +2,14 @@
 
 	require("config.php");
 
-	$firstname 	= $_GET["userName"];
-	$email 		= $_GET["userEmail"];
+	$firstname 	= $_GET["firstname"];
+	$email 		= $_GET["email"];
 
-	sendEmailConfirmation($firstname, $email);
+	$success = sendEmailConfirmation($firstname, $email);
+
+	$rawJson = array("emailSuccess" => $success);
+
+	$cleanJson = json_encode($rawJson);
+
+	echo $cleanJson;
 ?>

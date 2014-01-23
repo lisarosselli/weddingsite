@@ -129,7 +129,10 @@
         $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
         $headers .= "From: <studio1809@gmail.com>" . "\r\n";
 
-        mail($to, $subject, $body, $headers);
+        if (mail($to, $subject, $body, $headers)) {
+            return 1;
+        } 
+        return 0;
     }
 
     /**

@@ -162,6 +162,39 @@ function serverCallback() {
 	var userFormContainer = document.getElementById("userFormContainer");
 	var newMessage = serverResponse.responseString;
 	userFormContainer.innerHTML = newMessage;
+
+	// emailing?
+	var xhr = new XMLHttpRequest;
+	xhr.onreadystatechange = ensureReadiness;
+	var t = this;
+	console.log("t="+t);
+
+	function ensureReadiness()
+	{
+		if (xhr.readyState < 4)
+		{
+			return;
+		}
+
+		if (xhr.status != 200)
+		{
+			return;
+		}
+
+		if (xhr.readyState === 4)
+		{
+			console.log("email success");
+			console.log(xhr);
+			var parsedObject = JSON.parse(xhr.response);
+			console.log(parsedObject);
+			//t.serverResponse = parsedObject;
+			//serverCallback();
+		}
+	}
+
+	var data = "firstname="+serverResponse.firstname+"&email="+userEmail.value;
+	xhr.open('GET', "includes/sendEmail.php?"+data, true);
+	xhr.send();
 }
 
 function hideConfirm() {
