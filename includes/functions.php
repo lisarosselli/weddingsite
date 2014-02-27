@@ -63,6 +63,7 @@
         $name = ucfirst($first)." ".ucfirst($last);
         $result = query("INSERT INTO rsvp (name, email, protein) values (?, ?, ?);", $name, $email, $protein);
         if ($result !== false) {
+            sendMyselfAlert( $first, $last );
             return 1;
         }
         return 0;
@@ -81,6 +82,7 @@
         $name = ucfirst($first)." ".ucfirst($last);
         $result = query("INSERT INTO regrets (name, email) values(?, ?);", $name, $email);
         if ($result !== false) {
+            sendMyselfRegret( $first, $last );
             return 1;
         }
         return 0;
@@ -93,6 +95,30 @@
             return 1;
         }
         return 0;
+    }
+
+    function sendMyselfAlert( $first, $last ) {
+        $to = "studio1809@gmail.com";
+        $subject = "Wedding RSVP Alert";
+        $body = "Lisa, ".$first." ".$last." has RSVP'd to the wedding.";
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+        $headers .= "From: <studio1809@gmail.com>" . "\r\n";
+
+        mail($to, $subject, $body, $headers);
+    }
+
+    function sendMyselfRegret( $first, $last ) {
+        $to = "studio1809@gmail.com";
+        $subject = "Wedding Regret Alert";
+        $body = "Lisa, ".$first." ".$last." is not coming to the wedding.";
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+        $headers .= "From: <studio1809@gmail.com>" . "\r\n";
+
+        mail($to, $subject, $body, $headers);
     }
 
     function sendEmailConfirmation( $firstname, $email ) {
