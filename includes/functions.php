@@ -188,7 +188,8 @@
             catch (Exception $e)
             {
                 // trigger (big, orange) error
-                trigger_error($e->getMessage(), E_USER_ERROR);
+                //trigger_error($e->getMessage(), E_USER_ERROR);
+                print_r($e->getMessage());
                 exit;
             }
         }
@@ -198,7 +199,8 @@
         if ($statement === false)
         {
             // trigger (big, orange) error
-            trigger_error($handle->errorInfo()[2], E_USER_ERROR);
+            //trigger_error($handle->errorInfo()[2], E_USER_ERROR);
+            print_r($handle->errorInfo());
             exit;
         }
 
