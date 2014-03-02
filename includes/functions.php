@@ -63,6 +63,7 @@
         $name = ucfirst($first)." ".ucfirst($last);
         $result = query("INSERT INTO rsvp (name, email, protein) values (?, ?, ?);", $name, $email, $protein);
         if ($result !== false) {
+            sendEmailConfirmation( $first, $email );
             sendMyselfAlert( $first, $last );
             return 1;
         }

@@ -128,6 +128,7 @@ function doServerCheck() {
 	xhr.onreadystatechange = ensureReadiness;
 	var t = this;
 	console.log("t="+t);
+	console.log("t.JSON="+t.JSON);
 
 	function ensureReadiness()
 	{
@@ -145,16 +146,30 @@ function doServerCheck() {
 		{
 			console.log("success");
 			console.log(xhr);
-			var parsedObject = JSON.parse(xhr.response);
-			console.log(parsedObject);
-			t.serverResponse = parsedObject;
-			serverCallback();
+			console.log("t.JSON?="+t.JSON);
+			console.log("t.JSON.parse?="+t.JSON.parse);
+			
+			try {
+				t.serverResponse = $.parseJSON(xhr.response);
+				serverCallback();
+			} catch(e) {
+				console.log("catch: non-modern browser");
+				console.log("e="+e);
+				serverCallbackNonModern();
+			} 
 		}
 	}
 
 	var data = "userCode="+userCode.value+"&userName="+userName.value+"&userEmail="+userEmail.value+"&userEntree="+userEntree;
 	xhr.open('GET', "includes/validateCode.php?"+data, true);
 	xhr.send();
+}
+
+function serverCallbackNonModern() {
+	console.log("serverCallbackNonModern");
+	var userFormContainer = document.getElementById("userFormContainer");
+	var newMessage = "Please check if you've received an RSVP confirmation email. If so, you're in! If not, please contact Eileen and Lisa.";
+	userFormContainer.innerHTML = newMessage;
 }
 
 function serverCallback() {
@@ -164,6 +179,7 @@ function serverCallback() {
 	userFormContainer.innerHTML = newMessage;
 
 	// emailing?
+	/*
 	var xhr = new XMLHttpRequest;
 	xhr.onreadystatechange = ensureReadiness;
 	var t = this;
@@ -195,6 +211,7 @@ function serverCallback() {
 	var data = "firstname="+serverResponse.firstname+"&email="+userEmail.value;
 	xhr.open('GET', "includes/sendEmail.php?"+data, true);
 	xhr.send();
+	*/
 }
 
 function hideConfirm() {
