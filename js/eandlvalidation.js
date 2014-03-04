@@ -17,13 +17,25 @@ window.onload = function() {
 	document.getElementById("yeahisuck").onclick = submitRegretsTable;
 }
 
+function ajax() {
+	try {
+		return new ActiveXObject('Msxml2.XMLHTTP');
+	} catch (e) {
+		try {
+			return new ActiveXObject('Microsoft.XMLHTTP');
+		} catch (e) {
+			return new XMLHttpRequest();
+		}
+	}
+}
+
 function validateForm() {
 	console.log("validateForm");
 
 	userName = document.getElementById("username");
 	userEmail = document.getElementById("email");
 	userCode = document.getElementById("code");
-	entreeBlurb = document.getElementById("entreeBlurb");
+	userEntree = document.getElementById("entreeBlurb");
 
 	var isNameValid = validateName(userName.value);
 	var isEmailValid = validateEmail(userEmail.value);
@@ -49,9 +61,9 @@ function validateForm() {
 	}
 
 	if (!entreeValid) {
-		entreeBlurb.className += " redAlertText";
+		userEntree.className += " redAlertText";
 	} else {
-		entreeBlurb.className = "12u";
+		userEntree.className = "12u";
 	}
 
 	if (isNameValid && isEmailValid && isCodeValid && entreeValid) {
@@ -124,9 +136,10 @@ function doServerCheck() {
 
 	submitBtnFeedback();
 
-	var xhr = new XMLHttpRequest;
+	var xhr = ajax();
 	xhr.onreadystatechange = ensureReadiness;
 	var t = this;
+	console.log(xhr);
 	console.log("t="+t);
 	console.log("t.JSON="+t.JSON);
 
@@ -181,13 +194,13 @@ function serverCallback() {
 
 function hideConfirm() {
 	console.log("hideConfirm");
-	confirm = document.getElementById("lean_overlay");
+	var confirm = document.getElementById("lean_overlay");
 	confirm.className = "hide";
 }
 
 function showConfirm() {
 	console.log("showConfirm");
-	confirm = document.getElementById("lean_overlay");
+	var confirm = document.getElementById("lean_overlay");
 	confirm.className = "show";
 }
 
@@ -197,7 +210,7 @@ function validateRegret() {
 	userName = document.getElementById("username");
 	userEmail = document.getElementById("email");
 	userCode = document.getElementById("code");
-	entreeBlurb = document.getElementById("entreeBlurb");
+	userEntree = document.getElementById("entreeBlurb");
 
 	var isNameValid = validateName(userName.value);
 	var isEmailValid = validateEmail(userEmail.value);
@@ -221,7 +234,7 @@ function validateRegret() {
 		userCode.className = "text";
 	}
 
-	entreeBlurb.className = "12u";
+	userEntree.className = "12u";
 
 	if (isNameValid && isEmailValid && isCodeValid) {
 		showConfirm();
@@ -233,7 +246,7 @@ function submitRegretsTable() {
 
 	regretsBtnFeedback();
 
-	var xhr = new XMLHttpRequest;
+	var xhr = ajax();
 	xhr.onreadystatechange = ensureReadiness;
 	var t = window;
 	console.log("t="+t);
